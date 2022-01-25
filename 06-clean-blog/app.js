@@ -1,10 +1,36 @@
 import express from "express";
 const app = express();
 
-app.get("/", (req, res) => {
-  const blog = { id: 1, title: "Blog title", description: "Blog description" };
+//TEMPLATE ENGINE
 
-  res.send(blog)
+app.set('view engine','ejs')
+
+//STATIC FILES
+
+app.use(express.static('public'))
+
+//ROUTES
+app.get("/", (req, res) => {
+
+  res.render('index')
+
+});
+
+app.get("/post", (req, res) => {
+
+  res.render('post')
+
+});
+
+app.get("/add_post", (req, res) => {
+
+  res.render('add_post')
+
+});
+
+app.get("/about", (req, res) => {
+
+  res.render('about')
 
 });
 
