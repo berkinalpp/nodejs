@@ -27,7 +27,7 @@
         <% for(let i=0;i<posts.length;i++) { %>
  
         <div class="post-preview">
-          <a href="/post">
+          <a href="/post/<%= posts[i]._id %>">
             <h2 class="post-title">
             <%= posts[i].title %>
             </h2>
@@ -37,7 +37,11 @@
           </a>
           <p class="post-meta">Posted by
             <a href="#">Start Bootstrap</a>
-            on September 24, 2019</p>
+            on 
+            <%= posts[i].dateCreated.toLocaleString('en',{month:'long'}) %>
+            <%= posts[i].dateCreated.getDate() %>,
+            <%= posts[i].dateCreated.getFullYear() %>
+          </p>
         </div>
         <hr>
 
