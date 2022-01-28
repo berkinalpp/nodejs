@@ -1,6 +1,10 @@
 import express from "express";
 import mongoose from 'mongoose'
-import Post from './models/Post.js'
+import methodOverride from 'method-override'
+import { createPost, deletePost, updatePost } from "./controllers/PostController.js";
+import { getAboutPage, getAddPage, getIndexPage, getPostPage , getEditPage } from "./controllers/PageController.js";
+
+
 const app = express();
 
 //MONGODB CONNECT
@@ -20,36 +24,20 @@ app.set('view engine','ejs')
 app.use(express.static('public'))
 app.use(express.urlencoded({extended:true}));
 app.use(express.json())
+app.use(methodOverride('_method' , {
+  methods:['POST','GET']
+}))
 
 //ROUTES
-app.get("/", async(req, res) => {
-  const posts = await Post.find({})
-  res.render('index' , {posts})
+app.get("/", getIndexPage);
+app.get("/post/:id", getPostPage);
+app.get("/add_post", getAddPage);
+app.get("/about", getAboutPage);
+app.get("/post/edit/:id" , getEditPage)
+app.post('/posts',createPost)
+app.put('/posts/:id', updatePost)
+app.delete('/posts/:id', deletePost)
 
-});
-
-app.get("/post/:id", async(req, res) => {
-  const post = await Post.findById(req.params.id)
-  res.render('post',{post})
-
-});
-
-app.get("/add_post", (req, res) => {
-
-  res.render('add_post')
-
-});
-
-app.get("/about", (req, res) => {
-
-  res.render('about')
-
-});
-
-app.post('/posts',async(req, res) =>{
-    await Post.create(req.body)
-    res.redirect('/')
-})
 
 
 
