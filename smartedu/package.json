@@ -1,0 +1,26 @@
+{
+  "name": "smartedu",
+  "version": "1.0.0",
+  "description": "Nodejs smartedu template project",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "smart",
+    "edu",
+    "nodejs",
+    "backend",
+    "education"
+  ],
+  "author": "Berkin Alp",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.2"
+  }
+}
