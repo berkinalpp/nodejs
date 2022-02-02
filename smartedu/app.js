@@ -2,6 +2,7 @@ import express from 'express'
 import mongoose from 'mongoose'
 import pageRoute from './routes/pageRoute.js'
 import courseRoute from './routes/courseRoute.js'
+import categoryRoute from './routes/categoryRoute.js'
 
 const app= express()
 
@@ -25,6 +26,7 @@ app.use(express.static("public"))
 //ROUTES
 app.use('/',pageRoute)
 app.use('/courses',courseRoute)
+app.use('/categories',categoryRoute)
 
 
 

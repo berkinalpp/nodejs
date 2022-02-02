@@ -21,6 +21,10 @@ const CourseSchema = new Schema({
     slug_id: {
         type:String,
         unique:true
+    },
+    category: {
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'Category'
     }
 
 })
