@@ -40,3 +40,24 @@ export const getAllCourses = async(req,res) => {
 
  
 }
+
+
+export const getCourse = async(req,res) => {
+
+    try{
+    const course = await Course.findOne({slug_id:req.params.slug_id})
+
+        res.status(200).render('course',{
+            course,
+            currentPage:'courses'
+        })
+    
+    } catch(error) {
+        res.status(400).json({ 
+            success:'false',
+            error
+        })
+    }
+
+ 
+}
